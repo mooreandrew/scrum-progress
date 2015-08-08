@@ -1,0 +1,212 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<center><h2>{{ project_name }} - Sprint {{ sprint }}</h2>
+	{{ sprint_start_date }} - {{ sprint_finish_date }}
+</center>
+
+<br />
+<div class="row text-center">
+	<h3>Sprint Burn Down</h3>
+	<canvas id="myChart3" width="700" height="250"></canvas>
+</div>
+<div class="row">
+	<div class="col-xs-6 text-center">
+		<h3>Stories Status</h3>
+		<canvas id="myChart1" width="400" height="200"></canvas>
+	</div>
+	<div class="col-xs-6 text-center">
+		<h3>Stories Points Status</h3>
+		<canvas id="myChart2" width="400" height="200"></canvas>
+	</div>
+</div>
+
+
+
+
+
+
+<script>
+
+
+opts = {
+	animation: false
+
+
+}
+var data = [
+    {
+        value: {{ done_count }},
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Done"
+    },
+    {
+        value: {{ doing_count }},
+				color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Doing"
+    },
+    {
+        value: {{ backlog_count }},
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "Backlog"
+    }
+]
+
+var ctx = document.getElementById("myChart1").getContext("2d");
+var myPieChart = new Chart(ctx).Pie(data, opts);
+
+var data = [
+    {
+        value: {{ done_points }},
+				color: "#46BFBD",
+				highlight: "#5AD3D1",
+				label: "Done"
+    },
+    {
+        value: {{ doing_points }},
+				color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Doing"
+    },
+    {
+        value: {{ backlog_points }},
+				color:"#F7464A",
+				highlight: "#FF5A5E",
+				label: "Backlog"
+    }
+]
+
+var ctx = document.getElementById("myChart2").getContext("2d");
+var myPieChart = new Chart(ctx).Pie(data, opts);
+
+
+
+var data = {
+    labels: ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed"],
+    datasets: [
+        {
+            label: "Planned",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: {{ json_planned }}
+        },
+        {
+            label: "Actual",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: {{ json_actual }}
+        }
+    ]
+};
+
+var ctx = document.getElementById("myChart3").getContext("2d");
+var myLineChart = new Chart(ctx).Line(data, opts);
+
+
+</script>
+
+
+<h3>Sprint {{ sprint }} Done</h3>
+<table class="table table-striped" style="margin-bottom:0px">
+						<thead>
+							<tr>
+								<th >Card Name</th>
+								<th>Points</th>
+							</tr>
+						</thead>
+						<tbody id="systemlist">
+							{% for card in done_cards %}
+							<tr>
+								<td>{{ card[0] }}</td>
+								<td>{{ card[1] }}</td>
+							</tr>
+							{% endfor %}
+
+						</tbody>
+					</table>
+
+
+<h3>Sprint {{ sprint }} Doing</h3>
+<table class="table table-striped" style="margin-bottom:0px">
+						<thead>
+							<tr>
+								<th >Card Name</th>
+								<th>Points</th>
+							</tr>
+						</thead>
+						<tbody id="systemlist">
+							{% for card in doing_cards %}
+							<tr>
+								<td>{{ card[0] }}</td>
+								<td>{{ card[1] }}</td>
+							</tr>
+							{% endfor %}
+
+						</tbody>
+					</table>
+
+
+<h3>Sprint {{ sprint }} Backlog</h3>
+<table class="table table-striped" style="margin-bottom:0px">
+						<thead>
+							<tr>
+								<th >Card Name</th>
+								<th>Points</th>
+							</tr>
+						</thead>
+						<tbody id="systemlist">
+							{% for card in backlog_cards %}
+							<tr>
+								<td>{{ card[0] }}</td>
+								<td>{{ card[1] }}</td>
+							</tr>
+							{% endfor %}
+
+						</tbody>
+					</table>
+
+
+
+					<div class="row text-center">
+						<h3>Velocity</h3>
+						<canvas id="myChart4" width="700" height="250"></canvas>
+					</div>
+
+<script>
+
+
+var data = {
+    labels: {{ burnupkey }},
+    datasets: [
+        {
+            label: "Planned",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: {{ burnupdata }}
+        }
+    ]
+};
+
+var ctx = document.getElementById("myChart4").getContext("2d");
+var myLineChart = new Chart(ctx).Line(data, opts);
+
+
+</script>
+
+
+{% endblock %}

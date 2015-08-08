@@ -24,3 +24,4 @@ watchdog==0.8.3
 Flask-WTF==0.10.2
 Flask-Security==1.7.4
 flask_ldap3_login==0.9.7
+py-trello==0.4.2
