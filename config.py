@@ -6,7 +6,7 @@ class Config(object):
     SECRET_KEY = os.environ['SECRET_KEY']
 
 class DevelopmentConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql://scrum-progress:scrum-progress@localhost/scrum-progress'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+pg8000://scrum-progress:scrum-progress@localhost/scrum-progress'
     DEBUG = True
 
 class ProductionConfig(Config):
