@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.dialects.postgresql import JSON
 from application import db
-from flask.ext.security import Security, UserMixin
 
 class projects(db.Model):
     __tablename__ = 'report_settings'

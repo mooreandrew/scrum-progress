@@ -13,15 +13,5 @@ gunicorn==19.1.1
 itsdangerous==0.24
 psutil==2.2.0
 psycopg2==2.5.4
-mock==1.0.1
-pytest==2.6.4
-pytest-cov==1.8.1
-PyYAML==3.11
-six==1.9.0
-kombu==3.0.24
-stopit==1.1.0
-watchdog==0.8.3
 Flask-WTF==0.10.2
-Flask-Security==1.7.4
-flask_ldap3_login==0.9.7
 py-trello==0.4.2
