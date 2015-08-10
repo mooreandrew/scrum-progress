@@ -25,7 +25,7 @@ def setup(project_url):
     form = projectSettings()
     form.collaboration_project_name.choices = get_trello_projects()
 
-    res = projects.query.filter(projects.project_name.ilike(project_url)).order_by(projects.id).all()
+    res = projects.query.filter(projects.project_url.ilike(project_url)).order_by(projects.id).all()
     if (len(res) == 1):
         form.project_name.data = res[0].project_name
         form.collaboration_tool.data = res[0].collaboration_tool
@@ -55,7 +55,7 @@ def setup(project_url):
 
 @app.route('/<project_url>')
 def dashboard(project_url):
-    project_settings = projects.query.filter(projects.project_name.ilike(project_url)).order_by(projects.id).all()
+    project_settings = projects.query.filter(projects.project_url.ilike(project_url)).order_by(projects.id).all()
     if (len(project_settings) == 0):
         return redirect("/" + project_url + "/setup", code=302)
 
