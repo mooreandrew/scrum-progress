@@ -17,6 +17,10 @@ The following environment variables need to be set:
 ##How to run
 
 ```
+git clone https://github.com/mooreandrew/scrum-progress.git
+```
+
+```
 vagrant up
 ```
 
