@@ -21,6 +21,10 @@ git clone https://github.com/mooreandrew/scrum-progress.git
 ```
 
 ```
+cd scrum-progress
+```
+
+```
 vagrant up
 ```
 
