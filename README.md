@@ -61,3 +61,33 @@ export trello_token="token here"
 ```
 ./run.sh
 ```
+
+##How to use
+
+To check if the application is running, go to:
+
+```
+http://localhost:5001/
+```
+
+This should return a response of "Ok"
+
+To set up a project (replace project name with your teams name):
+
+```
+http://localhost:5001/<projectname>
+```
+
+If the project doesn't exist, it will redirect you to the setup page.
+
+It will then ask you for your project details:
+
+- Project Name (e.g. Infrastructure)
+- Collaboration Tool (e.g. Trello)
+- Collaboration Project Name (e.g. )
+- Sprint Start No (e.g. 12)
+- Sprint Start Year (e.g. 2015)
+- Sprint Start Month (e.g. 6)
+- Sprint Start Day (e.g. 25)
+
+The Sprint Start details are set to the sprint number/date that you want to start calculating since. It will also calculate the current sprint you are in.
